@@ -49,8 +49,6 @@ def crear_factura(nombre_cliente, bono, descuento):
         cursor.execute(insert_sumprecio)
         
         total_sin_descuento = cursor.fetchone()[0]
-        print(total_sin_descuento)
-        print(type(total_sin_descuento))
 
         if total_sin_descuento is None:
             total_sin_descuento = 0.00
