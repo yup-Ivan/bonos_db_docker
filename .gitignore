@@ -1,0 +1,3 @@
+*.sock
+dbdata/
+db.sql
