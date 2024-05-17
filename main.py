@@ -3,14 +3,7 @@ from utiles.opciones import (
     opcion_2,
     bono_valido,
     )
-from utiles.funciones import (
-    agregar_producto_cesta, 
-    borrar_cesta, 
-    crear_factura,
-    )
-from utiles.conectar import (
-    crear_tablas
-)
+from utiles.models import Funcionalidades
 
 MAX_BONO = 50
 bono = "N/A"
@@ -21,7 +14,9 @@ nombre = input('Introduce tu nombre de usuario: ')
 
 while comprando:
 
-    crear_tablas()
+    gestor = Funcionalidades()
+
+    gestor.crear_tablas()
 
     if bono != "N/A":
         opcion = opcion_2()
@@ -34,7 +29,7 @@ while comprando:
             
             producto = input('Introduce el nombre del producto: ')
             precio = input('Introduce el precio: ')
-            resultado = agregar_producto_cesta(producto, precio)
+            resultado = gestor.actualizar_cesta(producto, precio)
             print(resultado)
 
         case "b":
@@ -43,9 +38,9 @@ while comprando:
 
         case "c":
 
-            resultado = crear_factura(nombre, bono, descuento)
+            resultado = gestor.crear_factura(nombre, bono, descuento)
             print(resultado)
-            resultado = borrar_cesta()
+            resultado = gestor.borrar_cesta()
             print(resultado)
 
             comprando = False
